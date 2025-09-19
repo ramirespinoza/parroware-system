@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('assigned_sacrament', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('priest_id');
+            $table->unsignedBigInteger('sacrament_type_id');
+            $table->unsignedBigInteger('parishioner_id');
+            $table->date('scheduled_date');
+            $table->enum('assigned_sacrament_status', ['Pending', 'Done', 'Cancelled']);
             $table->timestamps();
         });
     }

@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('priest', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('dpi');
+            $table->string('name', 45);
+            $table->string('last_name', 45);
+            $table->date('brithday');
+            $table->string('address', 100);
+            $table->unsignedInteger('phone_number');
+            $table->string('email', 45);
             $table->timestamps();
         });
     }

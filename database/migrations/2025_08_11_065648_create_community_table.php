@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('community', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 45);
+            $table->string('description', 100);
+            $table->unsignedBigInteger('coordinator_id');
+            $table->unsignedBigInteger('subcoordinator_id');
             $table->timestamps();
         });
     }

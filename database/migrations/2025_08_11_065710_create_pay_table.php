@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('pay', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('parishioner_id');
+            $table->unsignedBigInteger('service_type_id');
+            $table->Integer('ammount');
+            $table->string('note', 100);
             $table->timestamps();
         });
     }
