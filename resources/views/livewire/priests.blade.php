@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Feligreses') }}
+            {{ __('Sacerdote') }}
         </h2>
     </x-slot>
 
@@ -19,9 +19,9 @@
                 <div class="mb-6">
                     <h2 class="text-xl font-bold mb-2">
                         @if($editId)
-                            Edit Feligres
+                            Edit Sacerdote
                         @else
-                            Create Feligres
+                            Create Sacerdote
                         @endif
                     </h2>
 
@@ -44,9 +44,6 @@
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
                     <input type="email" wire:model="email" placeholder="Correo" class="border p-2 mb-2 w-full">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
-
-                    <input type="number" wire:model="communityId" placeholder="Comunidad" class="border p-2 mb-2 w-full">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
                     @if($editId)
@@ -72,18 +69,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($parishioners as $parishioner)
+                        @foreach($priests as $priest)
                         <tr>
-                            <td class="border px-4 py-2">{{ $parishioner->id }}</td>
-                            <td class="border px-4 py-2">{{ $parishioner->dpi }}</td>
-                            <td class="border px-4 py-2">{{ $parishioner->name }}</td>
-                            <td class="border px-4 py-2">{{ $parishioner->last_name }}</td>
-                            <td class="border px-4 py-2">{{ $parishioner->birthday }}</td>
-                            <td class="border px-4 py-2">{{ $parishioner->address }}</td>
-                            <td class="border px-4 py-2">{{ $parishioner->phone_number }}</td>
+                            <td class="border px-4 py-2">{{ $priest->id }}</td>
+                            <td class="border px-4 py-2">{{ $priest->dpi }}</td>
+                            <td class="border px-4 py-2">{{ $priest->name }}</td>
+                            <td class="border px-4 py-2">{{ $priest->last_name }}</td>
+                            <td class="border px-4 py-2">{{ $priest->birthday }}</td>
+                            <td class="border px-4 py-2">{{ $priest->address }}</td>
+                            <td class="border px-4 py-2">{{ $priest->phone_number }}</td>
                             <td class="border px-4 py-2">
-                                <button wire:click="edit({{ $parishioner->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
-                                <button wire:click="delete({{ $parishioner->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                                <button wire:click="edit({{ $priest->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
+                                <button wire:click="delete({{ $priest->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                             </td>
                         </tr>
                         @endforeach

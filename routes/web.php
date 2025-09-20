@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Communities;
 use App\Livewire\Parishioners;
+use App\Livewire\Priests;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,4 +20,5 @@ Route::middleware([
 
     Route::get('/communities', Communities::class);
     Route::get('/parishioners', Parishioners::class);
+    Route::get('/priests', Priests::class);
 });
