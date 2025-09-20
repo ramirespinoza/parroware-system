@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Communities;
 use App\Livewire\Parishioners;
 use App\Livewire\Priests;
+use App\Livewire\SacramentTypes;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,4 +22,5 @@ Route::middleware([
     Route::get('/communities', Communities::class);
     Route::get('/parishioners', Parishioners::class);
     Route::get('/priests', Priests::class);
+    Route::get('/sacrament-types', SacramentTypes::class);
 });
