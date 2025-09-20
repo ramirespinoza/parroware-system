@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('dpi');
             $table->string('name', 45);
             $table->string('last_name', 45);
-            $table->date('brithday');
+            $table->date('birthday');
             $table->string('address', 100);
             $table->unsignedInteger('phone_number');
             $table->string('email', 45);

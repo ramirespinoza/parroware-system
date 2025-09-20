@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Communities;
+use App\Livewire\Parishioners;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,4 +18,5 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/communities', Communities::class);
+    Route::get('/parishioners', Parishioners::class);
 });
