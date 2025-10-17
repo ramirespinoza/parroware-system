@@ -5,6 +5,7 @@ use App\Livewire\Communities;
 use App\Livewire\Parishioners;
 use App\Livewire\Priests;
 use App\Livewire\SacramentTypes;
+use App\Livewire\AssignedSacraments;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,4 +24,5 @@ Route::middleware([
     Route::get('/parishioners', Parishioners::class);
     Route::get('/priests', Priests::class);
     Route::get('/sacrament-types', SacramentTypes::class);
+    Route::get('/assigned-sacraments', AssignedSacraments::class);
 });
