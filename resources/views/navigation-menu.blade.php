@@ -15,6 +15,25 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('assigned-sacraments') }}" :active="request()->routeIs('assigned-sacraments')">
+                        {{ __('Sacramentos') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('pays') }}" :active="request()->routeIs('pays')">
+                        {{ __('Pagos') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('communities') }}" :active="request()->routeIs('communities')">
+                        {{ __('Comunidades') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('parishioners') }}" :active="request()->routeIs('parishioners')">
+                        {{ __('Feligreses') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('priests') }}" :active="request()->routeIs('priests')">
+                        {{ __('Sacerdotes') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('certificates') }}" :active="request()->routeIs('certificates')">
+                        {{ __('Certificados') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 

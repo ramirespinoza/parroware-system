@@ -23,12 +23,12 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/communities', Communities::class);
-    Route::get('/parishioners', Parishioners::class);
-    Route::get('/priests', Priests::class);
-    Route::get('/sacrament-types', SacramentTypes::class);
-    Route::get('/assigned-sacraments', AssignedSacraments::class);
-    Route::get('/certificates', Certificates::class);
-    Route::get('/service-types', ServiceTypes::class);
-    Route::get('/pays', Pays::class);
+    Route::get('/communities', Communities::class)->name('communities');
+    Route::get('/parishioners', Parishioners::class)->name('parishioners');
+    Route::get('/priests', Priests::class)->name('priests');
+    Route::get('/sacrament-types', SacramentTypes::class)->name('sacrament-types');
+    Route::get('/assigned-sacraments', AssignedSacraments::class)->name('assigned-sacraments');
+    Route::get('/certificates', Certificates::class)->name('certificates');
+    Route::get('/service-types', ServiceTypes::class)->name('service-types');
+    Route::get('/pays', Pays::class)->name('pays');
 });
