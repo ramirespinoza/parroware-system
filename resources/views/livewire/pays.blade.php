@@ -5,8 +5,8 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class=" py-12">
+        <div class=" max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
                 @if (session()->has('message'))
@@ -16,7 +16,7 @@
                 @endif
 
                 <!-- FORMULARIO -->
-                <div class="mb-6">
+                <div class="p-8 mb-6">
                     <h2 class="text-xl font-bold mb-2">
                         @if($editId)
                             Editar Pago
@@ -25,24 +25,24 @@
                         @endif
                     </h2>
 
-                    <input type="number" wire:model="serviceTypeId" placeholder="Tipo de servicio" class="border p-2 mb-2 w-full">
+                    <input type="number" wire:model="serviceTypeId" placeholder="Tipo de servicio" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="number" wire:model="parishionerId" placeholder="Feligres" class="border p-2 mb-2 w-full">
+                    <input type="number" wire:model="parishionerId" placeholder="Feligres" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="date" wire:model="payDate" placeholder="Fecha de pago" class="border p-2 mb-2 w-full">
+                    <input type="date" wire:model="payDate" placeholder="Fecha de pago" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="number" wire:model="ammount" placeholder="Monto" class="border p-2 mb-2 w-full">
+                    <input type="number" wire:model="ammount" placeholder="Monto" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
 
                     @if($editId)
-                        <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
-                        <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
+                        <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
+                        <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>
                     @else
-                        <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded">Save</button>
+                        <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded m-2">Save</button>
                     @endif
                 </div>
 
@@ -60,12 +60,12 @@
                     <tbody>
                         @foreach($pays as $pay)
                         <tr>
-                            <td class="border px-4 py-2">{{ $pay->id }}</td>
-                            <td class="border px-4 py-2">{{ $pay->service_type_id }}</td>
-                            <td class="border px-4 py-2">{{ $pay->parishioner_id }}</td>
-                            <td class="border px-4 py-2">{{ $pay->pay_date }}</td>
-                            <td class="border px-4 py-2">{{ $pay->ammount }}</td>
-                            <td class="border px-4 py-2">
+                            <td class="border py-3 px-6 text-left">{{ $pay->id }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $pay->service_type_id }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $pay->parishioner_id }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $pay->pay_date }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $pay->ammount }}</td>
+                            <td class="border py-3 px-6 text-center">
                                 <button wire:click="edit({{ $pay->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                                 <button wire:click="delete({{ $pay->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                             </td>

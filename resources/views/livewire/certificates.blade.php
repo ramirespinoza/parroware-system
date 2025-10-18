@@ -16,7 +16,7 @@
                 @endif
 
                 <!-- FORMULARIO -->
-                <div class="mb-6">
+                <div class="p-8 mb-6">
                     <h2 class="text-xl font-bold mb-2">
                         @if($editId)
                             Editar Certificado
@@ -25,20 +25,20 @@
                         @endif
                     </h2>
 
-                    <input type="file" wire:model="certificate" placeholder="Certificado" class="border p-2 mb-2 w-full">
+                    <input type="file" wire:model="certificate" placeholder="Certificado" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="date" wire:model="isueDate" placeholder="Fecha" class="border p-2 mb-2 w-full">
+                    <input type="date" wire:model="isueDate" placeholder="Fecha" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="number" wire:model="assignedSacramentId" placeholder="Sacramento" class="border p-2 mb-2 w-full">
+                    <input type="number" wire:model="assignedSacramentId" placeholder="Sacramento" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
                     @if($editId)
-                        <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
-                        <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
+                        <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
+                        <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>
                     @else
-                        <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded">Save</button>
+                        <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded m-2">Save</button>
                     @endif
                 </div>
 
@@ -55,13 +55,13 @@
                     <tbody>
                         @foreach($certificates as $certificate)
                         <tr>
-                            <td class="border px-4 py-2">{{ $certificate->id }}</td>
-                            <td class="border px-4 py-2">
+                            <td class="border py-3 px-6 text-left">{{ $certificate->id }}</td>
+                            <td class="border py-3 px-6 text-left">
                                 <button wire:click="viewCertificate({{ $certificate->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Ver</button>
                             </td>
-                            <td class="border px-4 py-2">{{ $certificate->isue_date }}</td>
-                            <td class="border px-4 py-2">{{ $certificate->assigned_sacrament_id }}</td>
-                            <td class="border px-4 py-2">
+                            <td class="border py-3 px-6 text-left">{{ $certificate->isue_date }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $certificate->assigned_sacrament_id }}</td>
+                            <td class="border py-3 px-6 text-center">
                                 <button wire:click="edit({{ $certificate->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                                 <button wire:click="delete({{ $certificate->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                             </td>

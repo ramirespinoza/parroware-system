@@ -16,7 +16,7 @@
                 @endif
 
                 <!-- FORMULARIO -->
-                <div class="mb-6">
+                <div class="p-8 mb-6">
                     <h2 class="text-xl font-bold mb-2">
                         @if($editId)
                             Edit Sacerdote
@@ -25,32 +25,32 @@
                         @endif
                     </h2>
 
-                    <input type="number" wire:model="dpi" placeholder="DPI" class="border p-2 mb-2 w-full">
+                    <input type="number" wire:model="dpi" placeholder="DPI" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="text" wire:model="name" placeholder="Nombre" class="border p-2 mb-2 w-full">
+                    <input type="text" wire:model="name" placeholder="Nombre" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="text" wire:model="lastName" placeholder="Apellido" class="border p-2 mb-2 w-full">
+                    <input type="text" wire:model="lastName" placeholder="Apellido" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="date" wire:model="birthday" placeholder="F. Nacimiento" class="border p-2 mb-2 w-full">
+                    <input type="date" wire:model="birthday" placeholder="F. Nacimiento" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="text" wire:model="address" placeholder="Direcciòn" class="border p-2 mb-2 w-full">
+                    <input type="text" wire:model="address" placeholder="Direcciòn" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="number" wire:model="phoneNumber" placeholder="Numero de telèfono" class="border p-2 mb-2 w-full">
+                    <input type="number" wire:model="phoneNumber" placeholder="Numero de telèfono" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="email" wire:model="email" placeholder="Correo" class="border p-2 mb-2 w-full">
+                    <input type="email" wire:model="email" placeholder="Correo" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
                     @if($editId)
-                        <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
-                        <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
+                        <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
+                        <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>
                     @else
-                        <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded">Save</button>
+                        <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded m-2">Save</button>
                     @endif
                 </div>
 
@@ -71,14 +71,14 @@
                     <tbody>
                         @foreach($priests as $priest)
                         <tr>
-                            <td class="border px-4 py-2">{{ $priest->id }}</td>
-                            <td class="border px-4 py-2">{{ $priest->dpi }}</td>
-                            <td class="border px-4 py-2">{{ $priest->name }}</td>
-                            <td class="border px-4 py-2">{{ $priest->last_name }}</td>
-                            <td class="border px-4 py-2">{{ $priest->birthday }}</td>
-                            <td class="border px-4 py-2">{{ $priest->address }}</td>
-                            <td class="border px-4 py-2">{{ $priest->phone_number }}</td>
-                            <td class="border px-4 py-2">
+                            <td class="border py-3 px-6 text-left">{{ $priest->id }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $priest->dpi }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $priest->name }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $priest->last_name }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $priest->birthday }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $priest->address }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $priest->phone_number }}</td>
+                            <td class="border py-3 px-6 text-center">
                                 <button wire:click="edit({{ $priest->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                                 <button wire:click="delete({{ $priest->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                             </td>

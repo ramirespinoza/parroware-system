@@ -16,7 +16,7 @@
                     @endif
 
                     <!-- FORMULARIO -->
-                    <div class="mb-6">
+                    <div class="p-8 mb-6">
                         <h2 class="text-xl font-bold mb-2">
                             @if($editId)
                                 Edit Community
@@ -25,23 +25,23 @@
                             @endif
                         </h2>
 
-                        <input type="text" wire:model="name" placeholder="Nombre" class="border p-2 mb-2 w-full">
+                        <input type="text" wire:model="name" placeholder="Nombre" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                         @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                        <textarea wire:model="description" placeholder="Descripcion" class="border p-2 mb-2 w-full"></textarea>
+                        <textarea wire:model="description" placeholder="Descripcion" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2"></textarea>
                         @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                        <input type="number" wire:model="coordinatorId" placeholder="Coordinador" class="border p-2 mb-2 w-full">
+                        <input type="number" wire:model="coordinatorId" placeholder="Coordinador" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                         @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                        <input type="number" wire:model="subCoordinatorId" placeholder="Subcoordinador" class="border p-2 mb-2 w-full">
+                        <input type="number" wire:model="subCoordinatorId" placeholder="Subcoordinador" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                         @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
                         @if($editId)
-                            <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
-                            <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
+                            <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
+                            <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>
                         @else
-                            <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded">Save</button>
+                            <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded m-2">Save</button>
                         @endif
                     </div>
 
@@ -57,10 +57,10 @@
                         <tbody>
                             @foreach($communities as $community)
                             <tr>
-                                <td class="border px-4 py-2">{{ $community->id }}</td>
-                                <td class="border px-4 py-2">{{ $community->name }}</td>
-                                <td class="border px-4 py-2">{{ $community->description }}</td>
-                                <td class="border px-4 py-2">
+                                <td class="border py-3 px-6 text-left">{{ $community->id }}</td>
+                                <td class="border py-3 px-6 text-left">{{ $community->name }}</td>
+                                <td class="border py-3 px-6 text-left">{{ $community->description }}</td>
+                                <td class="border py-3 px-6 text-center">
                                     <button wire:click="edit({{ $community->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                                     <button wire:click="delete({{ $community->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                                 </td>

@@ -16,7 +16,7 @@
                 @endif
 
                 <!-- FORMULARIO -->
-                <div class="mb-6">
+                <div class="p-8 mb-6">
                     <h2 class="text-xl font-bold mb-2">
                         @if($editId)
                             Editar Asignación de Sacramentos
@@ -25,30 +25,30 @@
                         @endif
                     </h2>
 
-                    <input type="number" wire:model="sacramentTypeId" placeholder="Tipo de sacramento" class="border p-2 mb-2 w-full">
+                    <input type="number" wire:model="sacramentTypeId" placeholder="Tipo de sacramento" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="number" wire:model="parishionerId" placeholder="Feligres" class="border p-2 mb-2 w-full">
+                    <input type="number" wire:model="parishionerId" placeholder="Feligres" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="date" wire:model="scheduledDate" placeholder="Fecha asignada" class="border p-2 mb-2 w-full">
+                    <input type="date" wire:model="scheduledDate" placeholder="Fecha asignada" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <select wire:model="assignedSacramentStatus" placeholder="Estado del sacramento asignado" class="border p-2 mb-2 w-full" list="sacramentStatusList">
+                    <select wire:model="assignedSacramentStatus" placeholder="Estado del sacramento asignado" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2" list="sacramentStatusList">
                         <option value="Pending">Pendiente</option>
                         <option value="Done">Listo</option>
                         <option value="Cancelled">Cancelado</option>
                     </select>
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="number" wire:model="priestId" placeholder="Feligres" class="border p-2 mb-2 w-full">
+                    <input type="number" wire:model="priestId" placeholder="Feligres" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
                     @if($editId)
-                        <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
-                        <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
+                        <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
+                        <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>
                     @else
-                        <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded">Save</button>
+                        <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded m-2">Save</button>
                     @endif
                 </div>
 
@@ -65,11 +65,11 @@
                     <tbody>
                         @foreach($assignedSacraments as $assignedSacrament)
                         <tr>
-                            <td class="border px-4 py-2">{{ $assignedSacrament->id }}</td>
-                            <td class="border px-4 py-2">{{ $assignedSacrament->sacrament_type_id }}</td>
-                            <td class="border px-4 py-2">{{ $assignedSacrament->parishioner_id }}</td>
-                            <td class="border px-4 py-2">{{ $assignedSacrament->scheduled_date }}</td>
-                            <td class="border px-4 py-2">
+                            <td class="border py-3 px-6 text-left">{{ $assignedSacrament->id }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $assignedSacrament->sacrament_type_id }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $assignedSacrament->parishioner_id }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $assignedSacrament->scheduled_date }}</td>
+                            <td class="border py-3 px-6 text-center">
                                 <button wire:click="edit({{ $assignedSacrament->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                                 <button wire:click="delete({{ $assignedSacrament->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                             </td>
