@@ -2,6 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Exports\ParishionersExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Models\Community;
 use Livewire\Component;
 use App\Models\Parishioner;
@@ -124,5 +127,14 @@ class Parishioners extends Component
         Parishioner::find($id)->delete();
         session()->flash('message', 'Community deleted successfully.');
     }
+
+    public function export()
+    {
+        $ldate = date('Y-m-d H:i:s');
+
+        $fileName = 'parisioners'. $ldate . '.xlsx';
+        return Excel::download(new ParishionersExport, $fileName);
+    }
+
 
 }

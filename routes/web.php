@@ -9,6 +9,7 @@ use App\Livewire\AssignedSacraments;
 use App\Livewire\Certificates;
 use App\Livewire\ServiceTypes;
 use App\Livewire\Pays;
+use App\Models\Parishioner;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,4 +32,5 @@ Route::middleware([
     Route::get('/certificates', Certificates::class)->name('certificates');
     Route::get('/service-types', ServiceTypes::class)->name('service-types');
     Route::get('/pays', Pays::class)->name('pays');
+    Route::get('users/export/', [Parishioners::class, 'export'])->name('parishioners-export');
 });
