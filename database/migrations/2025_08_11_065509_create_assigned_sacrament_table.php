@@ -19,6 +19,11 @@ return new class extends Migration
             $table->date('scheduled_date');
             $table->enum('assigned_sacrament_status', ['Pending', 'Done', 'Cancelled']);
             $table->timestamps();
+
+            $table->foreign('priest_id')->references('id')->on('priest');
+            $table->foreign('sacrament_type_id')->references('id')->on('sacrament_type');
+            $table->foreign('parishioner_id')->references('id')->on('parishioner');
+
         });
     }
 

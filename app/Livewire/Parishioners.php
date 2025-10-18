@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Community;
 use Livewire\Component;
 use App\Models\Parishioner;
 
@@ -17,6 +18,8 @@ class Parishioners extends Component
     public $email;
     public $communityId;
     public $editId;
+
+    public $communities;
 
     protected function rules()
     {
@@ -35,6 +38,7 @@ class Parishioners extends Component
     public function mount()
     {
         $this->parishioners = Parishioner::all();
+        $this->communities = Community::all();
     }
 
     public function render()

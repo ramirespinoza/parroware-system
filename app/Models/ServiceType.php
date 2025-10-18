@@ -9,4 +9,9 @@ class ServiceType extends Model
     protected $table = 'service_type';
 
     protected $fillable = ['name', 'description'];
+
+    public function pays()
+    {
+        return $this->hasMany(Pay::class);
+    }
 }

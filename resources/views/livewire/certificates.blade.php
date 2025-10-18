@@ -25,15 +25,24 @@
                         @endif
                     </h2>
 
-                    <input type="file" wire:model="certificate" placeholder="Certificado" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Certificado</label>
+                    <input type="file" wire:model="certificate" placeholder="Certificado" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="date" wire:model="isueDate" placeholder="Fecha" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Fecha de pago</label>
+                    <input type="date" wire:model="isueDate" placeholder="Fecha" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="number" wire:model="assignedSacramentId" placeholder="Sacramento" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Tipo de pago</label>
+                    <select wire:model="assignedSacramentId" placeholder="Tipo de sacramento" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="">Seleccione un sacramento realizado</option>
+                        @foreach($assignedSacraments as $assignedSacrament)
+                        <option value="{{ $assignedSacrament->id }}">{{ $assignedSacrament->parishioner->name }} {{ $assignedSacrament->parishioner->last_name }} - {{ $assignedSacrament->scheduled_date }}</option>
+                        @endforeach
+                    </select>
+                    @error('assignedSacramentId') <span class="text-red-500">{{ $message }}</span> @enderror
 
+                    <br>
                     @if($editId)
                         <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
                         <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>

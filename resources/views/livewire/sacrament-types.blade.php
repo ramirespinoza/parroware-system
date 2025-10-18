@@ -25,12 +25,15 @@
                         @endif
                     </h2>
 
-                    <input type="text" wire:model="name" placeholder="Nombre" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Nombre</label>
+                    <input type="text" wire:model="name" placeholder="Nombre" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <textarea wire:model="description" placeholder="Descripcion" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2"></textarea>
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Descripción</label>
+                    <textarea wire:model="description" placeholder="Descripcion" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
                     @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
 
+                    <br>
                     @if($editId)
                         <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
                         <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>

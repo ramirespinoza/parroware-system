@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\AssignedSacrament;
 use Livewire\Component;
 use App\Models\Certificate;
 use Livewire\WithFileUploads;
@@ -18,6 +19,8 @@ class Certificates extends Component
     public $assignedSacramentId;
     public $editId;
 
+    public $assignedSacraments;
+
     protected function rules()
     {
         return [
@@ -30,6 +33,7 @@ class Certificates extends Component
     public function mount()
     {
         $this->certificates = Certificate::all();
+        $this->assignedSacraments = AssignedSacrament::with('parishioner')->get();
     }
 
     public function render()

@@ -19,6 +19,9 @@ return new class extends Migration
             $table->Integer('ammount');
             $table->string('note', 100)->nullable();
             $table->timestamps();
+
+            $table->foreign('parishioner_id')->references('id')->on('parishioner');
+            $table->foreign('service_type_id')->references('id')->on('service_type');
         });
     }
 

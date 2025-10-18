@@ -25,30 +25,44 @@
                         @endif
                     </h2>
 
-                    <input type="number" wire:model="dpi" placeholder="DPI" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">DPI</label>
+                    <input type="number" wire:model="dpi" placeholder="DPI" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    @error('dpi') <span class="text-red-500">{{ $message }}</span> @enderror
+
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Nombre</label>
+                    <input type="text" wire:model="name" placeholder="Nombre" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="text" wire:model="name" placeholder="Nombre" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Apellido</label>
+                    <input type="text" wire:model="lastName" placeholder="Apellido" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    @error('lastName') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="text" wire:model="lastName" placeholder="Apellido" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Fecha de nacimiento</label>
+                    <input type="date" wire:model="birthday" placeholder="F. Nacimiento" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    @error('birthday') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="date" wire:model="birthday" placeholder="F. Nacimiento" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Dirección</label>
+                    <input type="text" wire:model="address" placeholder="Direcciòn" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    @error('address') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="text" wire:model="address" placeholder="Direcciòn" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Número de contacto</label>
+                    <input type="number" wire:model="phoneNumber" placeholder="Numero de telèfono" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    @error('phoneNumber') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="number" wire:model="phoneNumber" placeholder="Numero de telèfono" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Correo electrónico</label>
+                    <input type="email" wire:model="email" placeholder="Correo electrónico" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="email" wire:model="email" placeholder="Correo" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Comunidad</label>
+                    <select wire:model="communityId" placeholder="Comunidad" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="">Seleccione una comunidad</option>
+                        @foreach($communities as $community)
+                        <option value="{{ $community->id }}">{{ $community->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('communityId') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="number" wire:model="communityId" placeholder="Comunidad" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
-
+                    <br>
                     @if($editId)
                         <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
                         <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>

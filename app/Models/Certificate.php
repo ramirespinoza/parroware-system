@@ -15,4 +15,9 @@ class Certificate extends Model
         return asset('storage/' . $this->file_path);
     }
 
+    public function assignedSacrament()
+    {
+        return $this->belongsTo(AssignedSacrament::class);
+    }
+
 }

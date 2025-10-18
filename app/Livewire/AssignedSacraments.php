@@ -4,6 +4,9 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\AssignedSacrament;
+use App\Models\Parishioner;
+use App\Models\SacramentType;
+use App\Models\Priest;
 
 class AssignedSacraments extends Component
 {
@@ -14,6 +17,10 @@ class AssignedSacraments extends Component
     public $assignedSacramentStatus;
     public $priestId;
     public $editId;
+
+    public $sacramentTypes;
+    public $parishioners;
+    public $priests;
 
     protected function rules()
     {
@@ -28,7 +35,11 @@ class AssignedSacraments extends Component
 
     public function mount()
     {
-        $this->assignedSacraments = AssignedSacrament::all();
+        $this->assignedSacraments = AssignedSacrament::with('sacramentType', 'parishioner', 'priest')->get();
+        $this->sacramentTypes = SacramentType::all();
+        $this->parishioners = Parishioner::all();
+        $this->priests = Priest::all();
+
     }
 
     public function render()

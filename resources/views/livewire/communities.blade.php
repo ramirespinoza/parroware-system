@@ -25,18 +25,23 @@
                             @endif
                         </h2>
 
+                        <label class="block text-sm font-medium text-gray-700 m-2 m-0">Nombre</label>
                         <input type="text" wire:model="name" placeholder="Nombre" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
                         @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
+                        <label class="block text-sm font-medium text-gray-700 m-2 m-0">Descripción</label>
                         <textarea wire:model="description" placeholder="Descripcion" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2"></textarea>
                         @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
 
+                        <label class="block text-sm font-medium text-gray-700 m-2 m-0">Coordinador</label>
                         <input type="number" wire:model="coordinatorId" placeholder="Coordinador" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                        @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                        @error('coordinatorId') <span class="text-red-500">{{ $message }}</span> @enderror
 
+                        <label class="block text-sm font-medium text-gray-700 m-2 m-0">Subcoordinado</label>
                         <input type="number" wire:model="subCoordinatorId" placeholder="Subcoordinador" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                        @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                        @error('subCoordinatorId') <span class="text-red-500">{{ $message }}</span> @enderror
 
+                        <br>
                         @if($editId)
                             <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
                             <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>

@@ -9,4 +9,9 @@ class SacramentType extends Model
     protected $table = 'sacrament_type';
 
     protected $fillable = ['name', 'description'];
+
+    public function assignedSacraments()
+    {
+        return $this->hasMany(AssignedSacrament::class);
+    }
 }

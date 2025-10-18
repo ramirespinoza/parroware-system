@@ -18,6 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('coordinator_id');
             $table->unsignedBigInteger('subcoordinator_id');
             $table->timestamps();
+
+            $table->foreign('coordinator_id')->references('id')->on('parishioner');
+            $table->foreign('subcoordinator_id')->references('id')->on('parishioner');
         });
     }
 

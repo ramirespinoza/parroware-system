@@ -9,4 +9,9 @@ class Priest extends Model
     protected $table = 'priest';
 
     protected $fillable = ['dpi', 'name', 'last_name', 'birthday', 'address', 'phone_number', 'email'];
+
+    public function assignedSacraments()
+    {
+        return $this->hasMany(AssignedSacrament::class);
+    }
 }

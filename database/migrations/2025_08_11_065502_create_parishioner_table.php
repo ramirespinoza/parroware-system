@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('address', 100);
             $table->unsignedInteger('phone_number');
             $table->string('email', 45);
-            $table->unsignedBigInteger('community_id');
+            $table->unsignedBigInteger('community_id')->nullable();
             $table->timestamps();
         });
     }

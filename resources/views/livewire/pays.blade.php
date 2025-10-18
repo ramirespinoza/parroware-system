@@ -25,19 +25,33 @@
                         @endif
                     </h2>
 
-                    <input type="number" wire:model="serviceTypeId" placeholder="Tipo de servicio" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Tipo de pago</label>
+                    <select wire:model="serviceTypeId" placeholder="Tipo de sacramento" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="">Seleccione un tipo de pago</option>
+                        @foreach($serviceTypes as $serviceType)
+                        <option value="{{ $serviceType->id }}">{{ $serviceType->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('serviceTypeId') <span class="text-red-500">{{ $message }}</span> @enderror
+
+                    <label class="block text-sm font-medium text-gray-700 m-2">Feligres</label>
+                    <select wire:model="parishionerId" placeholder="Feligres" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="">Seleccione un feligres</option>
+                        @foreach($parishioners as $parishioner)
+                        <option value="{{ $parishioner->id }}">{{ $parishioner->name }} {{ $parishioner->last_name }}</option>
+                        @endforeach
+                    </select>
+                    @error('parishionerId') <span class="text-red-500">{{ $message }}</span> @enderror
+
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Fecha de pago</label>
+                    <input type="date" wire:model="payDate" placeholder="Fecha de pago" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="number" wire:model="parishionerId" placeholder="Feligres" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Monto</label>
+                    <input type="number" wire:model="ammount" placeholder="Monto" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    @error('ammount') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="date" wire:model="payDate" placeholder="Fecha de pago" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
-
-                    <input type="number" wire:model="ammount" placeholder="Monto" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
-
-
+                    <br>
                     @if($editId)
                         <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
                         <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>
@@ -61,8 +75,8 @@
                         @foreach($pays as $pay)
                         <tr>
                             <td class="border py-3 px-6 text-left">{{ $pay->id }}</td>
-                            <td class="border py-3 px-6 text-left">{{ $pay->service_type_id }}</td>
-                            <td class="border py-3 px-6 text-left">{{ $pay->parishioner_id }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $pay->serviceType->name }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $pay->parishioner->dpi }} - {{ $pay->parishioner->name  }} {{ $pay->parishioner->last_name  }}</td>
                             <td class="border py-3 px-6 text-left">{{ $pay->pay_date }}</td>
                             <td class="border py-3 px-6 text-left">{{ $pay->ammount }}</td>
                             <td class="border py-3 px-6 text-center">

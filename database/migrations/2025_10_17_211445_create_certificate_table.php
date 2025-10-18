@@ -17,6 +17,14 @@ return new class extends Migration
             $table->date('isue_date');
             $table->unsignedBigInteger('assigned_sacrament_id');
             $table->timestamps();
+
+            $table->foreign('assigned_sacrament_id')->references('id')->on('assigned_sacrament');
+        });
+
+        Schema::table('parishioner', function (Blueprint $table) {
+
+            $table->foreign('community_id')->references('id')->on('community');
+
         });
     }
 

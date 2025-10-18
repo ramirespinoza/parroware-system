@@ -25,25 +25,45 @@
                         @endif
                     </h2>
 
-                    <input type="number" wire:model="sacramentTypeId" placeholder="Tipo de sacramento" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <label class="block text-sm font-medium text-gray-700 m-2 m-0">Tipo de sacramento</label>
+                    <select wire:model="sacramentTypeId" placeholder="Tipo de sacramento" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="">Seleccione un tipo de sacramento</option>
+                        @foreach($sacramentTypes as $sacramentType)
+                        <option value="{{ $sacramentType->id }}">{{ $sacramentType->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('sacramentTypeId') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="number" wire:model="parishionerId" placeholder="Feligres" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <label class="block text-sm font-medium text-gray-700 m-2">Feligres</label>
+                    <select wire:model="parishionerId" placeholder="Feligres" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="">Seleccione un feligres</option>
+                        @foreach($parishioners as $parishioner)
+                        <option value="{{ $parishioner->id }}">{{ $parishioner->name }} {{ $parishioner->last_name }}</option>
+                        @endforeach
+                    </select>
+                    @error('parishionerId') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="date" wire:model="scheduledDate" placeholder="Fecha asignada" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <label class="block text-sm font-medium text-gray-700 m-2">Fecha asignada</label>
+                    <input type="date" wire:model="scheduledDate" placeholder="Fecha asignada" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    @error('scheduledDate') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <select wire:model="assignedSacramentStatus" placeholder="Estado del sacramento asignado" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2" list="sacramentStatusList">
+                    <label class="block text-sm font-medium text-gray-700 m-2">Estado del sacramento</label>
+                    <select wire:model="assignedSacramentStatus" placeholder="Estado del sacramento asignado" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" list="sacramentStatusList">
                         <option value="Pending">Pendiente</option>
                         <option value="Done">Listo</option>
                         <option value="Cancelled">Cancelado</option>
                     </select>
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    @error('assignedSacramentStatus') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <input type="number" wire:model="priestId" placeholder="Feligres" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 m-2">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
-
+                    <label class="block text-sm font-medium text-gray-700 m-2">Sacerdote</label>
+                    <select wire:model="priestId" placeholder="Sacerdote" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="">Seleccione un sacerdote</option>
+                        @foreach($priests as $priest)
+                        <option value="{{ $priest->id }}">{{ $priest->name }} {{ $priest->last_name }}</option>
+                        @endforeach
+                    </select>
+                    @error('priestId') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <br>
                     @if($editId)
                         <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
                         <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>
@@ -59,6 +79,7 @@
                             <th class="px-4 py-2 border">Tipo</th>
                             <th class="px-4 py-2 border">Feligres</th>
                             <th class="px-4 py-2 border">Fecha</th>
+                            <th class="px-4 py-2 border">Estatus</th>
                             <th class="px-4 py-2 border">Actions</th>
                         </tr>
                     </thead>
@@ -66,9 +87,10 @@
                         @foreach($assignedSacraments as $assignedSacrament)
                         <tr>
                             <td class="border py-3 px-6 text-left">{{ $assignedSacrament->id }}</td>
-                            <td class="border py-3 px-6 text-left">{{ $assignedSacrament->sacrament_type_id }}</td>
-                            <td class="border py-3 px-6 text-left">{{ $assignedSacrament->parishioner_id }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $assignedSacrament->sacramentType->name }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $assignedSacrament->parishioner->dpi }} - {{ $assignedSacrament->parishioner->name  }} {{ $assignedSacrament->parishioner->last_name  }}</td>
                             <td class="border py-3 px-6 text-left">{{ $assignedSacrament->scheduled_date }}</td>
+                            <td class="border py-3 px-6 text-left">{{ $assignedSacrament->assigned_sacrament_status }}</td>
                             <td class="border py-3 px-6 text-center">
                                 <button wire:click="edit({{ $assignedSacrament->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                                 <button wire:click="delete({{ $assignedSacrament->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>

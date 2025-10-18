@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Pay;
+use App\Models\ServiceType;
+use App\Models\Parishioner;
 
 class Pays extends Component
 {
@@ -13,6 +15,9 @@ class Pays extends Component
     public $payDate;
     public $ammount;
     public $editId;
+
+    public $serviceTypes;
+    public $parishioners;
 
     protected function rules()
     {
@@ -26,7 +31,9 @@ class Pays extends Component
 
     public function mount()
     {
-        $this->pays = Pay::all();
+        $this->pays = Pay::with('parishioner', 'serviceType')->get();
+        $this->serviceTypes = ServiceType::all();
+        $this->parishioners = Parishioner::all();
     }
 
     public function render()

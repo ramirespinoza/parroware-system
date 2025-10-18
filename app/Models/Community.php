@@ -10,4 +10,9 @@ class Community extends Model
 
     protected $fillable = ['name', 'description', 'coordinator_id', 'subcoordinator_id'];
 
+    public function parishioners()
+    {
+        return $this->hasMany(Parishioner::class);
+    }
+
 }
