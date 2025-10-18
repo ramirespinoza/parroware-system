@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
+                        <<x-authentication-card-logo class="block h-9 w-auto" />
                     </a>
                 </div>
 
@@ -15,6 +15,7 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @role('admin')
                     <x-nav-link href="{{ route('assigned-sacraments') }}" :active="request()->routeIs('assigned-sacraments')">
                         {{ __('Sacramentos') }}
                     </x-nav-link>
@@ -24,6 +25,7 @@
                     <x-nav-link href="{{ route('communities') }}" :active="request()->routeIs('communities')">
                         {{ __('Comunidades') }}
                     </x-nav-link>
+                    @endrole
                     <x-nav-link href="{{ route('parishioners') }}" :active="request()->routeIs('parishioners')">
                         {{ __('Feligreses') }}
                     </x-nav-link>
