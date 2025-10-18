@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Actions\Fortify\CreateNewUser;
+
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Communities;
 use App\Livewire\Parishioners;
@@ -9,7 +13,6 @@ use App\Livewire\AssignedSacraments;
 use App\Livewire\Certificates;
 use App\Livewire\ServiceTypes;
 use App\Livewire\Pays;
-use App\Models\Parishioner;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,4 +36,23 @@ Route::middleware([
     Route::get('/service-types', ServiceTypes::class)->name('service-types');
     Route::get('/pays', Pays::class)->name('pays');
     Route::get('users/export/', [Parishioners::class, 'export'])->name('parishioners-export');
+    Route::get('/admin/register', function () {
+        // Solo el admin puede ver la vista
+        if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+            abort(403, 'Solo el administrador puede registrar nuevos usuarios.');
+        }
+
+        return view('auth.register');
+    })->name('admin.register');
+    Route::post('/admin/register', function (Request $request) {
+        // Solo el admin puede crear usuarios
+        if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+            abort(403, 'Solo el administrador puede registrar nuevos usuarios.');
+        }
+
+        $action = new CreateNewUser();
+        $action->create($request->all());
+
+        return redirect()->route('dashboard')->with('success', 'Usuario creado correctamente.');
+    })->name('register');
 });
