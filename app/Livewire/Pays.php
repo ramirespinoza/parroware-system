@@ -6,10 +6,13 @@ use Livewire\Component;
 use App\Models\Pay;
 use App\Models\ServiceType;
 use App\Models\Parishioner;
+use Livewire\WithPagination;
 
 class Pays extends Component
 {
-    public $pays;
+    use WithPagination;
+
+    //public $pays;
     public $serviceTypeId;
     public $parishionerId;
     public $payDate;
@@ -18,6 +21,18 @@ class Pays extends Component
 
     public $serviceTypes;
     public $parishioners;
+
+    public $search = '';
+    public $searchType = '';
+
+    protected $updatesQueryString = ['search', 'searchType'];
+
+
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     protected function rules()
     {
@@ -31,14 +46,45 @@ class Pays extends Component
 
     public function mount()
     {
-        $this->pays = Pay::with('parishioner', 'serviceType')->get();
+        //$this->pays = Pay::with('parishioner', 'serviceType')->get();
         $this->serviceTypes = ServiceType::all();
         $this->parishioners = Parishioner::all();
     }
 
     public function render()
     {
-        return view('livewire.pays');
+        if($this->searchType == ''){
+            return view('livewire.pays', ['pays' => Pay::query()
+            ->with('parishioner', 'serviceType')
+            ->whereHas('parishioner', function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%')
+                ->orWhere('last_name', 'like', '%' . $this->search . '%');
+            })
+            ->orwhereHas('serviceType', function ($query) {
+                $query->where('name', 'like', '%'. $this->search .'%');
+            }
+            )->paginate(10)
+        ]);
+        }
+
+        if($this->searchType == 'parishioner') {
+            return view('livewire.pays', ['pays' => Pay::query()
+            ->with('parishioner', 'serviceType')
+            ->whereHas($this->searchType, function ($query) {
+                    $query->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('last_name', 'like', '%' . $this->search . '%');
+            }
+            )->paginate(10)
+        ]);
+        }
+
+        return view('livewire.pays', ['pays' => Pay::query()
+            ->with('parishioner', 'serviceType')
+            ->whereHas('serviceType', function ($query) {
+                    $query->where('name', 'like', '%' . $this->search . '%');
+            }
+            )->paginate(10)
+        ]);
     }
 
     public function resetInput()

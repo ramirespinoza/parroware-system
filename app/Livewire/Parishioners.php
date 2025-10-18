@@ -8,10 +8,13 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Community;
 use Livewire\Component;
 use App\Models\Parishioner;
+use Livewire\WithPagination;
 
 class Parishioners extends Component
 {
-    public $parishioners;
+    use WithPagination;
+
+    //public $parishioners;
     public $dpi;
     public $name;
     public $lastName;
@@ -23,6 +26,11 @@ class Parishioners extends Component
     public $editId;
 
     public $communities;
+
+    public $search = '';
+    public $searchType = '';
+
+    protected $updatesQueryString = ['search', 'searchType'];
 
     protected function rules()
     {
@@ -40,13 +48,25 @@ class Parishioners extends Component
 
     public function mount()
     {
-        $this->parishioners = Parishioner::all();
+        //$this->parishioners = Parishioner::all();
         $this->communities = Community::all();
     }
 
     public function render()
     {
-        return view('livewire.parishioners');
+        if($this->searchType == ''){
+            return view('livewire.parishioners', ['parishioners' => Parishioner::query()
+            ->where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('last_name', 'like', '%' . $this->search . '%')
+            ->orWhere('dpi', 'like', '%' . $this->search . '%')
+            ->orWhere('phone_number', 'like', '%' . $this->search . '%')
+            ->paginate(10)
+        ]);
+        }
+
+        return view('livewire.parishioners', ['parishioners' => Parishioner::query()
+            ->where($this->searchType, 'like', '%' . $this->search . '%')
+            ->paginate(10)]);
     }
 
 

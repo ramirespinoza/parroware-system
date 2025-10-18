@@ -66,6 +66,15 @@
                 </div>
 
                 <table class="table-auto w-full border">
+                    <div class="p-4">
+                        <input type="text" wire:model.live.debounce.300ms="search" placeholder="Busqueda" class="w-mid rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+
+                        <select wire:model="searchType" class="w-mid rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <option value="">Todos los tipos</option>
+                            <option value="serviceType">Tipo Servicio</option>
+                            <option value="parishioner">Feligres</option>
+                        </select>
+                    </div>
                     <thead>
                         <tr class="bg-gray-200">
                             <th class="px-4 py-2 border">ID</th>
@@ -92,6 +101,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $pays->links() }}
             </div>
         </div>
     </div>

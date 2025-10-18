@@ -7,10 +7,13 @@ use App\Models\AssignedSacrament;
 use App\Models\Parishioner;
 use App\Models\SacramentType;
 use App\Models\Priest;
+use Livewire\WithPagination;
 
 class AssignedSacraments extends Component
 {
-    public $assignedSacraments;
+    use WithPagination;
+
+    //public $assignedSacraments;
     public $sacramentTypeId;
     public $parishionerId;
     public $scheduledDate;
@@ -21,6 +24,11 @@ class AssignedSacraments extends Component
     public $sacramentTypes;
     public $parishioners;
     public $priests;
+
+    public $search = '';
+    public $searchType = '';
+
+    protected $updatesQueryString = ['search', 'searchType'];
 
     protected function rules()
     {
@@ -35,7 +43,7 @@ class AssignedSacraments extends Component
 
     public function mount()
     {
-        $this->assignedSacraments = AssignedSacrament::with('sacramentType', 'parishioner', 'priest')->get();
+        //$this->assignedSacraments = AssignedSacrament::with('sacramentType', 'parishioner', 'priest')->get();
         $this->sacramentTypes = SacramentType::all();
         $this->parishioners = Parishioner::all();
         $this->priests = Priest::all();
@@ -44,7 +52,53 @@ class AssignedSacraments extends Component
 
     public function render()
     {
-        return view('livewire.assigned-sacrament');
+        if($this->searchType == ''){
+            return view('livewire.assigned-sacrament', ['assignedSacraments' => AssignedSacrament::query()
+            ->with('parishioner', 'sacramentType', 'priest')
+            ->whereHas('parishioner', function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%')
+                ->orWhere('last_name', 'like', '%' . $this->search . '%');
+            })
+            ->orwhereHas('sacramentType', function ($query) {
+                $query->where('name', 'like', '%'. $this->search .'%');
+            })
+            ->whereHas('priest', function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%')
+                ->orWhere('last_name', 'like', '%' . $this->search . '%');
+            })
+            ->paginate(10)
+        ]);
+        }
+
+        if($this->searchType == 'parishioner') {
+            return view('livewire.assigned-sacrament', ['assignedSacraments' => AssignedSacrament::query()
+            ->with('parishioner', 'sacramentType', 'priest')
+            ->whereHas($this->searchType, function ($query) {
+                    $query->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('last_name', 'like', '%' . $this->search . '%');
+            }
+            )->paginate(10)
+        ]);
+        }
+
+        if($this->searchType == 'priest') {
+            return view('livewire.assigned-sacrament', ['assignedSacraments' => AssignedSacrament::query()
+            ->with('parishioner', 'sacramentType', 'priest')
+            ->whereHas($this->searchType, function ($query) {
+                    $query->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('last_name', 'like', '%' . $this->search . '%');
+            }
+            )->paginate(10)
+        ]);
+        }
+
+        return view('livewire.assigned-sacrament', ['assignedSacraments' => AssignedSacrament::query()
+            ->with('parishioner', 'sacramentType', 'priest')
+            ->whereHas('sacramentType', function ($query) {
+                    $query->where('name', 'like', '%' . $this->search . '%');
+            }
+            )->paginate(10)
+        ]);
     }
 
     public function resetInput()

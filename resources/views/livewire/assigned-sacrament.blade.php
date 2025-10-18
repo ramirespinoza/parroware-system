@@ -54,6 +54,7 @@
 
                     <label class="block text-sm font-medium text-gray-700 m-2">Estado del sacramento</label>
                     <select wire:model="assignedSacramentStatus" placeholder="Estado del sacramento asignado" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" list="sacramentStatusList">
+                        <option value="">Seleccione un estatus</option>
                         <option value="Pending">Pendiente</option>
                         <option value="Done">Listo</option>
                         <option value="Cancelled">Cancelado</option>
@@ -75,6 +76,17 @@
                     @else
                         <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded m-2">Save</button>
                     @endif
+                </div>
+
+                <div class="p-4">
+                    <input type="text" wire:model.live.debounce.300ms="search" placeholder="Busqueda" class="w-mid rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+
+                    <select wire:model="searchType" class="w-mid rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="">Todos los tipos</option>
+                        <option value="sacramentType">Tipo Sacramento</option>
+                        <option value="parishioner">Feligres</option>
+                        <option value="priest">Sacerdotes</option>
+                    </select>
                 </div>
 
                 <table class="table-auto w-full border">

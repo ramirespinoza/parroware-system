@@ -7,10 +7,13 @@ use Livewire\Component;
 use App\Models\Certificate;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Livewire\WithPagination;
 
 class Certificates extends Component
 {
+    use WithPagination;
     use WithFileUploads;
+
     public $certificates;
     public $certificate;
     public $certificatePath;
@@ -20,6 +23,11 @@ class Certificates extends Component
     public $editId;
 
     public $assignedSacraments;
+
+    public $search = '';
+    public $searchType = '';
+
+    protected $updatesQueryString = ['search', 'searchType'];
 
     protected function rules()
     {

@@ -4,15 +4,23 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Community;
+use Livewire\WithPagination;
 
 class Communities extends Component
 {
-    public $communities;
+    use WithPagination;
+
+    //public $communities;
     public $name;
     public $description;
     public $coordinatorId;
     public $subCoordinatorId;
     public $editId;
+
+    public $search = '';
+    public $searchType = '';
+
+    protected $updatesQueryString = ['search', 'searchType'];
 
     protected function rules()
     {
@@ -26,12 +34,22 @@ class Communities extends Component
 
     public function mount()
     {
-        $this->communities = Community::all();
+        //$this->communities = Community::all();
     }
 
     public function render()
     {
-        return view('livewire.communities');
+        if($this->searchType == ''){
+            return view('livewire.communities', ['communities' => Community::query()
+            ->where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('description', 'like', '%' . $this->search . '%')
+            ->paginate(10)
+        ]);
+        }
+
+        return view('livewire.communities', ['communities' => Community::query()
+            ->where($this->searchType, 'like', '%' . $this->search . '%')
+            ->paginate(10)]);
     }
 
     public function resetInput()

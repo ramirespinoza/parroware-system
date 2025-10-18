@@ -4,13 +4,21 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\ServiceType;
+use Livewire\WithPagination;
 
 class ServiceTypes extends Component
 {
-    public $service_types;
+    use WithPagination;
+
+    //public $service_types;
     public $name;
     public $description;
     public $editId;
+
+    public $search = '';
+    public $searchType = '';
+
+    protected $updatesQueryString = ['search', 'searchType'];
 
     protected function rules()
     {
@@ -22,12 +30,22 @@ class ServiceTypes extends Component
 
     public function mount()
     {
-        $this->service_types = ServiceType::all();
+        //$this->service_types = ServiceType::all();
     }
 
     public function render()
     {
-        return view('livewire.service-types');
+        if($this->searchType == ''){
+            return view('livewire.service-types', ['service_types' => ServiceType::query()
+            ->where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('description', 'like', '%' . $this->search . '%')
+            ->paginate(10)
+        ]);
+        }
+
+        return view('livewire.service-types', ['service_types' => ServiceType::query()
+            ->where($this->searchType, 'like', '%' . $this->search . '%')
+            ->paginate(10)]);
     }
 
     public function resetInput()

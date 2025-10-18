@@ -27,11 +27,11 @@
 
                     <label class="block text-sm font-medium text-gray-700 m-2 m-0">Certificado</label>
                     <input type="file" wire:model="certificate" placeholder="Certificado" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    @error('certificate') <span class="text-red-500">{{ $message }}</span> @enderror
 
                     <label class="block text-sm font-medium text-gray-700 m-2 m-0">Fecha de pago</label>
                     <input type="date" wire:model="isueDate" placeholder="Fecha" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                    @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    @error('isueDate') <span class="text-red-500">{{ $message }}</span> @enderror
 
                     <label class="block text-sm font-medium text-gray-700 m-2 m-0">Tipo de pago</label>
                     <select wire:model="assignedSacramentId" placeholder="Tipo de sacramento" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
@@ -49,6 +49,14 @@
                     @else
                         <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded m-2">Save</button>
                     @endif
+                </div>
+
+                <div class="p-4">
+                    <input type="text" wire:model.live.debounce.300ms="search" placeholder="Busqueda" class="w-mid rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+
+                    <select wire:model="searchType" class="w-mid rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="parishioner">Feligres</option>
+                    </select>
                 </div>
 
                 <table class="table-auto w-full border">

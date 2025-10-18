@@ -4,10 +4,13 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Priest;
+use Livewire\WithPagination;
 
 class Priests extends Component
 {
-    public $priests;
+    use WithPagination;
+
+    //public $priests;
     public $dpi;
     public $name;
     public $lastName;
@@ -16,6 +19,16 @@ class Priests extends Component
     public $phoneNumber;
     public $email;
     public $editId;
+
+    public $search = '';
+    public $searchType = '';
+
+    protected $updatesQueryString = ['search', 'searchType'];
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     protected function rules()
     {
@@ -32,12 +45,25 @@ class Priests extends Component
 
     public function mount()
     {
-        $this->priests = Priest::all();
+        //$this->priests = Priest::all();
     }
 
     public function render()
     {
-        return view('livewire.priests');
+        if($this->searchType == ''){
+            return view('livewire.priests', ['priests' => Priest::query()
+            ->where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('last_name', 'like', '%' . $this->search . '%')
+            ->orWhere('dpi', 'like', '%' . $this->search . '%')
+            ->orWhere('phone_number', 'like', '%' . $this->search . '%')
+            ->paginate(10)
+        ]);
+        }
+
+        return view('livewire.priests', ['priests' => Priest::query()
+            ->where($this->searchType, 'like', '%' . $this->search . '%')
+            ->paginate(10)]);
+
     }
 
 

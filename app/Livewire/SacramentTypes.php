@@ -4,13 +4,21 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\SacramentType;
+use Livewire\WithPagination;
 
 class SacramentTypes extends Component
 {
-    public $sacrament_types;
+    use WithPagination;
+
+    //public $sacrament_types;
     public $name;
     public $description;
     public $editId;
+
+    public $search = '';
+    public $searchType = '';
+
+    protected $updatesQueryString = ['search', 'searchType'];
 
     protected function rules()
     {
@@ -22,12 +30,22 @@ class SacramentTypes extends Component
 
     public function mount()
     {
-        $this->sacrament_types = SacramentType::all();
+        //$this->sacrament_types = SacramentType::all();
     }
 
     public function render()
     {
-        return view('livewire.sacrament-types');
+        if($this->searchType == ''){
+            return view('livewire.sacrament-types', ['sacrament_types' => SacramentType::query()
+            ->where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('description', 'like', '%' . $this->search . '%')
+            ->paginate(10)
+        ]);
+        }
+
+        return view('livewire.sacrament-types', ['sacrament_types' => SacramentType::query()
+            ->where($this->searchType, 'like', '%' . $this->search . '%')
+            ->paginate(10)]);
     }
 
     public function resetInput()
