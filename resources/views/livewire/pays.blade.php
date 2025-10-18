@@ -1,8 +1,13 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Pagos') }}
-        </h2>
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight inline-flex items-center">
+                {{ __('Pagos') }}
+            </h2>
+            <button class="inline-flex self-end bg-blue-500 text-black px-4 py-2 rounded m-2"><x-nav-link class="text-white" href="{{ route('service-types') }}" :active="request()->routeIs('service-types')">
+                {{ __('Tipos de servicios') }}
+            </x-nav-link></button>
+        </div>
     </x-slot>
 
     <div class=" py-12">
