@@ -6,6 +6,7 @@ use App\Livewire\Parishioners;
 use App\Livewire\Priests;
 use App\Livewire\SacramentTypes;
 use App\Livewire\AssignedSacraments;
+use App\Livewire\Certificates;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,4 +26,5 @@ Route::middleware([
     Route::get('/priests', Priests::class);
     Route::get('/sacrament-types', SacramentTypes::class);
     Route::get('/assigned-sacraments', AssignedSacraments::class);
+    Route::get('/certificates', Certificates::class);
 });
