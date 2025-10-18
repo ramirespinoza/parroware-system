@@ -8,6 +8,7 @@ use App\Livewire\SacramentTypes;
 use App\Livewire\AssignedSacraments;
 use App\Livewire\Certificates;
 use App\Livewire\ServiceTypes;
+use App\Livewire\Pays;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,4 +30,5 @@ Route::middleware([
     Route::get('/assigned-sacraments', AssignedSacraments::class);
     Route::get('/certificates', Certificates::class);
     Route::get('/service-types', ServiceTypes::class);
+    Route::get('/pays', Pays::class);
 });

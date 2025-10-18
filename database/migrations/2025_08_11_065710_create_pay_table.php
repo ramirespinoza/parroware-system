@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('parishioner_id');
             $table->unsignedBigInteger('service_type_id');
+            $table->Date('pay_date');
             $table->Integer('ammount');
-            $table->string('note', 100);
+            $table->string('note', 100)->nullable();
             $table->timestamps();
         });
     }
