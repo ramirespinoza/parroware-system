@@ -76,8 +76,8 @@
                     @error('priestId') <span class="text-red-500">{{ $message }}</span> @enderror
                     <br>
                     @if($editId)
-                        <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
-                        <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>
+                        <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Actualizar</button>
+                        <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancelar</button>
                     @else
                         <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded m-2">Guardar</button>
                     @endif

@@ -30,9 +30,9 @@
                 <div class="p-8 mb-6">
                     <h2 class="text-xl font-bold mb-2">
                         @if($editId)
-                            Edit Feligres
+                            Editar Feligres
                         @else
-                            Create Feligres
+                            Registrar Feligres
                         @endif
                     </h2>
 
@@ -75,8 +75,8 @@
 
                     <br>
                     @if($editId)
-                        <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
-                        <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>
+                        <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Actualizar</button>
+                        <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancelar</button>
                     @else
                         <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded m-2">Guardar</button>
                     @endif
