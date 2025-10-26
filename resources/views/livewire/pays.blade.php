@@ -61,7 +61,7 @@
                         <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded m-2">Update</button>
                         <button wire:click="resetInput" class="bg-gray-500 text-white px-4 py-2 rounded m-2">Cancel</button>
                     @else
-                        <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded m-2">Save</button>
+                        <button wire:click="store" class="bg-green-500 text-white px-4 py-2 rounded m-2">Guardar</button>
                     @endif
                 </div>
 
@@ -94,8 +94,8 @@
                             <td class="border py-3 px-6 text-left">{{ $pay->pay_date }}</td>
                             <td class="border py-3 px-6 text-left">{{ $pay->ammount }}</td>
                             <td class="border py-3 px-6 text-center">
-                                <button wire:click="edit({{ $pay->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
-                                <button wire:click="delete({{ $pay->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                                <button wire:click="edit({{ $pay->id }})" class="bg-yellow-500 text-white px-2 py-1 rounded">Editar</button>
+                                <button wire:click="delete({{ $pay->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Eliminar</button>
                             </td>
                         </tr>
                         @endforeach
